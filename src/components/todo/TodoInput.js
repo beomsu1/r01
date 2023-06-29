@@ -1,12 +1,14 @@
 import { useState } from "react";
 
+let tno = 1
+
 // 깨끗한 코드
 const initState = {title:'' , content:''}
 
-const TodoInput = () => {
+const TodoInput = ({addTodo}) => {
 
     // 재사용 하고 싶어서 initState 라고 만들고 따로 분리 
-    const [obj,setObj] = useState(initState)
+    const [obj,setObj] = useState({...initState})
 
     const handleChange = (e) => {
         // const prop = e.target.name
@@ -20,8 +22,14 @@ const TodoInput = () => {
     }
 
     // show를 누르면 로그창에 obj 
-    const handleShow = () => {
+    const handleAdd = () => {
         console.log(obj)
+        
+        // add 를 누르면 obj를 펴서 집어넣고 tno는 하나 증가
+        addTodo({...obj, tno:tno++})
+
+        // 추가하고 초기화 값으로 돌리기
+        setObj({...initState})
     }
 
     // claer
@@ -51,8 +59,8 @@ const TodoInput = () => {
                 onChange={handleChange}/>
             </div>
             <div>
-            <button onClick={handleShow}>
-                Show
+            <button onClick={handleAdd}>
+                Add
             </button>
             <button onClick={handleClear}>Clear</button>
             </div>
