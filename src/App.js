@@ -1,15 +1,10 @@
-import Todo from "./components/todo";
-import TodoInput from "./components/todo/TodoInput";
-import ZCounter from "./components/zcounter";
-import ZKiosk from "./components/zkiosk";
-import SampleLayout from "./layout/SampleLayout";
-import TemplatePage from "./layout/TemplatePage";
-
+import Kiosk from "./components/kiosk";
+import ProductList from "./components/kiosk/ProductList";
 
 function App() {
   return (
   <div>
-    <ZKiosk></ZKiosk>
+    <Kiosk></Kiosk>
     </div>
   );
 }
