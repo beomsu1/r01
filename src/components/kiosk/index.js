@@ -1,26 +1,39 @@
 import { useState } from "react";
 import ProductDetail from "./ProductDetail";
 import ProductList from "./ProductList";
+import Cart from "./Cart";
 
 const Kiosk = () => {
 
-    // 초기값을 0으로 설정한 것. -> targetId의 초기값은 0
-    // setTargetId 함수를 이용해서 targetId의 상태를 업데이트 해야함.
-    // ex) setTargetId(10) -> targetId 상태는 10으로 업데이트
-    const [targetId, setTargetId] = useState(0)
+    // tno값을 0으로 설정하고 setTarget 함수로 target의 상태를 변경
+    const [target, setTarget] = useState({pno:0})
+
+    const [wanted , setWanted] = useState(null)
 
     // 호출하면 id (번호) 값을 받아서 콘솔창에 출력
     const requestViewProduct = (id) => {
     console.log("requestViewProduct" , id)
+
+    // id 값을 받아와서 pno에 id 값을 넣고 setTartget 함수로 target의 상태를 업데이트
+    setTarget({pno:id})
+
+    }
+
     
-    // targetId를 id의 값으로 상태를 업데이트하자!
-    setTargetId(id)
-}
+    const requestBuy = (product) => {
+        console.log("requestBuy")
+        console.log(product)
+
+        setWanted(product)
+    }   
 
     return ( 
         <div>
             <ProductList requestViewProduct={requestViewProduct}></ProductList>
-            <ProductDetail></ProductDetail>
+
+            {/* ProductDetail 컴포넌트를 렌더링하면서 targetID 값을 id 속성으로 전달 */}
+            <ProductDetail target={target} requestBuy={requestBuy}></ProductDetail>
+            <Cart {...wanted}></Cart>
         </div>
      );
 }
