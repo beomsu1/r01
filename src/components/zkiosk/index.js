@@ -2,7 +2,7 @@ import { useState } from "react";
 import ZCart from "./ZCart";
 import ZProductList from "./ZProductList";
 
-const ZKiosk = () => {
+const ZKiosk = () => {  
 
     // 빈 배열인 items 변수 생성 , setItems -> items의 상태를 업데이트하기 위한 함수 
     const [items, setItems] = useState([])
